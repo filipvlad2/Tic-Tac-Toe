@@ -15,11 +15,6 @@ let verifier = 0;
 
 function gameBoxInput(clicked_id) {
 
-//Set a value of "null" to all the array elements	
-//for (let element of movesOnTheTable) {
-	//element = null;
-//}
-
 //Adds "X" or "0" on the table
 	if (xVerify === 1 && oVerify === 0) {
 		document.getElementById(clicked_id).innerHTML = playerX;
