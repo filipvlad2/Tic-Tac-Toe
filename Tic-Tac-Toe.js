@@ -13,17 +13,20 @@ for (let element of movesOnTheTable) {
 let winnerPlayer;
 let verifier = 0;
 
-function gameBoxInput(clicked_id) {
+function playersTurn(clicked_id) {
 
 //Adds "X" or "0" on the table
+
 	if (xVerify === 1 && oVerify === 0) {
 		document.getElementById(clicked_id).innerHTML = playerX;
 		movesOnTheTable[clicked_id] = playerX;
+		verifyWinnerCases(movesCounter);
 		xVerify = 0;
 		oVerify = 1;
 	} else if (xVerify === 0 && oVerify === 1) {
 		document.getElementById(clicked_id).innerHTML = player0;
 		movesOnTheTable[clicked_id] = player0;
+		verifyWinnerCases(movesCounter);
 		xVerify = 1;
 		oVerify = 0;
 	}
@@ -33,8 +36,12 @@ function gameBoxInput(clicked_id) {
 		oVerify = 0;
 	}
 	++movesCounter;
+}
 
 //Constantly verifying if any of the below is true, in order to declare the winner
+
+function verifyWinnerCases(movesCounter) {
+
 		if (movesOnTheTable[1] === movesOnTheTable[2] && movesOnTheTable[2] === movesOnTheTable[3] && movesOnTheTable[1] === movesOnTheTable[3]) {
 			winnerPlayer = movesOnTheTable[1];
 			if (winnerPlayer != null) {
@@ -83,7 +90,7 @@ function gameBoxInput(clicked_id) {
 				winner(winnerPlayer);
 			}
 		}
-		if (movesCounter === 10 && verifier === 0) {
+		if (movesCounter === 9 && verifier === 0) {
 			draw();
 		}
 }
