@@ -67,7 +67,7 @@ function verifyWinnerCases(movesCounter) {
 	}
 
 	if (movesCounter === 9 && verifier === 0) {
-			draw();
+		draw();
 	}
 }
 
