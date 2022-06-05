@@ -10,8 +10,20 @@ for (let element of movesOnTheTable) {
 	element = null;
 }
 
+
 let winnerPlayer;
 let verifier = 0;
+
+let conditions = 	[
+					[0, 1, 2],
+					[2, 5, 8],
+					[6, 7, 8],
+					[0, 3, 6],
+					[0, 4, 8],
+					[2, 4, 6],
+					[1, 4, 7],
+					[3, 4, 5]
+							];
 
 function playersTurn(clicked_id) {
 
@@ -36,63 +48,27 @@ function playersTurn(clicked_id) {
 		oVerify = 0;
 	}
 	++movesCounter;
+
 }
 
 //Constantly verifying if any of the below is true, in order to declare the winner
 
 function verifyWinnerCases(movesCounter) {
 
-		if (movesOnTheTable[1] === movesOnTheTable[2] && movesOnTheTable[2] === movesOnTheTable[3] && movesOnTheTable[1] === movesOnTheTable[3]) {
-			winnerPlayer = movesOnTheTable[1];
+	for (let i = 0; i < conditions.length; i++) {
+		if (movesOnTheTable[conditions[i][0]] === movesOnTheTable[conditions[i][1]] &&
+			movesOnTheTable[conditions[i][1]] === movesOnTheTable[conditions[i][2]] &&
+			movesOnTheTable[conditions[i][0]] === movesOnTheTable[conditions[i][2]]) {
+			winnerPlayer = movesOnTheTable[conditions[i][0]];
 			if (winnerPlayer != null) {
 				winner(winnerPlayer);
 			}
 		}
-		if (movesOnTheTable[3] === movesOnTheTable[6] && movesOnTheTable[6] === movesOnTheTable[9] && movesOnTheTable[3] === movesOnTheTable[9]) {
-			winnerPlayer = movesOnTheTable[3];
-			if (winnerPlayer != null) {
-				winner(winnerPlayer);
-			}
-		}
-		if (movesOnTheTable[7] === movesOnTheTable[8] && movesOnTheTable[8] === movesOnTheTable[9] && movesOnTheTable[7] === movesOnTheTable[9]) {
-			winnerPlayer = movesOnTheTable[7];
-			if (winnerPlayer != null) {
-				winner(winnerPlayer);
-			}
-		}
-		if (movesOnTheTable[1] === movesOnTheTable[4] && movesOnTheTable[4] === movesOnTheTable[7] && movesOnTheTable[1] === movesOnTheTable[7]) {
-			winnerPlayer = movesOnTheTable[1];
-			if (winnerPlayer != null) {
-				winner(winnerPlayer);
-			}
-		}
-		if (movesOnTheTable[1] === movesOnTheTable[5] && movesOnTheTable[5] === movesOnTheTable[9] && movesOnTheTable[1] === movesOnTheTable[9]) {
-			winnerPlayer = movesOnTheTable[1];
-			if (winnerPlayer != null) {
-				winner(winnerPlayer);
-			}
-		}
-		if (movesOnTheTable[3] === movesOnTheTable[5] && movesOnTheTable[5] === movesOnTheTable[7] && movesOnTheTable[3] === movesOnTheTable[7]) {
-			winnerPlayer = movesOnTheTable[3];
-			if (winnerPlayer != null) {
-				winner(winnerPlayer);
-			}
-		}
-		if (movesOnTheTable[2] === movesOnTheTable[5] && movesOnTheTable[5] === movesOnTheTable[8] && movesOnTheTable[2] === movesOnTheTable[8]) {
-			winnerPlayer = movesOnTheTable[2];
-			if (winnerPlayer != null) {
-				winner(winnerPlayer);
-			}
-		}
-		if (movesOnTheTable[4] === movesOnTheTable[5] && movesOnTheTable[5] === movesOnTheTable[6] && movesOnTheTable[4] === movesOnTheTable[6]) {
-			winnerPlayer = movesOnTheTable[4];
-			if (winnerPlayer != null) {
-				winner(winnerPlayer);
-			}
-		}
-		if (movesCounter === 9 && verifier === 0) {
+	}
+
+	if (movesCounter === 9 && verifier === 0) {
 			draw();
-		}
+	}
 }
 
 function winner(winnerPlayer) {
